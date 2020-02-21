@@ -1,0 +1,33 @@
+%%%% BEGIN document formatting %%%%
+\documentclass[11pt]{article}
+
+%%%% END document formatting %%%%
+
+
+%%%% BEGIN pseudocode packages %%%%
+\usepackage{algpseudocode,algorithm}
+%%%% END pseudocode packages %%%%
+
+\begin{document}
+
+
+\begin{algorithm}
+\caption{The EasyEnsemble algorithm}
+\begin{algorithmic}[1]
+	\State \{Input: A set of minority class examples $P$, a set of majority class examples $N$, $|P|<|N|$, the number of subsets $T$ to sample from $N$, and $s_i$, the number of iterations to train an AdaBoost ensemble $H_i$\}
+	\State $i \leftarrow 0$
+	\Repeat
+	\State $i \leftarrow i+1$
+	\State Randomly sample a subset $N_i$ from $N$, $|N_i| = |P|$.
+	\State Learn $H_i$ using $P$ and $N_I$. $H_i$ is an AdaBoost ensemble with $s_i$ weak classifiers $h_{i,j}$ and corresponding weights $\alpha_{i,j}$. The ensemble's threshold is $\theta_i$, i.e. 
+	
+	$H_i(x) = sgn(\sum_{j=1}^{s_i}\alpha_{i,j}h_{i,j}(x)-\theta_i)$
+	\Until{$i = T$}
+	\State Output: An ensemble:
+	
+	$H(x) = sgn(\sum_{i=1}^T\sum_{j=1}^{s_i}\alpha_{i,j}h_{i,j}(x)-\sum_{i=1}^T\theta_i)$.
+\end{algorithmic}
+\end{algorithm}
+
+
+\end{document}
